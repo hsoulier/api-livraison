@@ -1,16 +1,22 @@
-// Add Express
 const { default: axios } = require("axios")
 const express = require("express")
 
-// Initialize Express
 const app = express()
 
-// Add body-parser
 const bodyParser = require("body-parser")
 app.use(bodyParser.json())
-// Create GET request
+
 app.get("/api/ping", (req, res) => {
   res.send("PONG")
+})
+app.get("/api/shipping", (req, res) => {
+  try {
+    const { orderId, nbProducts } = req.body
+
+    res.status(204).end()
+  } catch (error) {
+    res.status(500).json(error)
+  }
 })
 
 // Initialize server
